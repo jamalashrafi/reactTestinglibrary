@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+export const removeCamleWithSpaces = name => {
+  return name.replace(/\B([A-Z])\B/g, ' $1');
+}
 function App() {
+  const [isClicked, setIsClicked] = useState(true);
+  const [changeBtnState, setChangeBtnState] = useState(true);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button style={{ backgroundColor: isClicked ? 'red' : 'blue' }} disabled={changeBtnState}
+        onClick={() => setIsClicked(!isClicked)}>Click Me!</button>
+
+      <input type="checkbox" onChange={() => setChangeBtnState(!changeBtnState)} />
     </div>
   );
 }
 
 export default App;
+
+//onChange={() => setChangeBtnState(!changeBtnState)}
